@@ -1,3 +1,4 @@
+# Lab 2 - Cipher Breaking 
 ## For Solution 1
 __1. First, you need to generate multiple frequency tables__
   * Find a couple of lengthy fairy tale stories
