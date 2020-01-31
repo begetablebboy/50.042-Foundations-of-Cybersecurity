@@ -1,0 +1,46 @@
+Hand in 1:
+1. Explain the limitation of protocol attack.
+- A protocol attack is a very common DDoS attack
+- protocol attacks deal at the packet level
+- Blocking “bad” traffic before it even reaches the site, leveraging visitor identification
+technology that differentiates between legitimate website visitors (humans, search engines etc.) and
+automated or malicious clients will help to mitigate
+
+Hand in 2:
+1. Explain the purpose of Optimal Asymetric Encryption Padding (OAEP) to encrypt and decrypt
+using RSA. Explain how it works.
+- OAEP is the main standard padding for RSA and uses padding, formatting the message before encryption to
+ensure a higher security level.
+- OAEP uses a Feistel network with a pair of random oracles G and H. These operates on the plaintext before
+it is encrypted. It adds randomness to the process.
+
+- For encryption:
+    - n = # of bits in RSA modulus
+    - k0, k1 = integers fixed by the protocol
+    - m = plaintext, an (n -k0 -k1) bit string
+    - G and H are random oracles such as cryptographic functions
+    - The message is padded with k1 zeros and will be of length (n -k0) bits
+    - r is a randomly generated k0 bit string
+    - G expands the k0 bits of r to n-k0 bits
+    - X = m00..0 ⊕ G(r)
+    - H reduces the n − k0 bits of X to k0 bits
+    - Y = r ⊕ H(X)
+    - Output = s X || Y, where X is shown in the diagram as the leftmost block and Y as the rightmost block
+
+- For Decryption:
+    - Generate the random string as r = Y ⊕ H(X)
+    - Generate the message as m00..0 = X ⊕ G(r)
+
+
+2. Explain the purpose of Probabilistic Signature Scheme (PSS) to sign and verify using RSA.
+Explain how it works.
+- PSS have randomization, which provides protection against certain types of implementation attacks.
+
+- How it works:
+    - PSS takes the input message and a salt (a random number) and runs them through a hash function
+    - Hash H is used as the beginning part of the output
+    - Then, a mask of H is calculated, which has a length of the RSA modulus (n) minus length of H
+    - maskedDB =  Mask ⊕ salt (with some zero padding)
+    - maskedDb is appended to H to generate the input from RSA function
+    - maskedDB and H are switched in their order
+    - Input message M us hashed at the beginning and then hashed again with a salt appended
